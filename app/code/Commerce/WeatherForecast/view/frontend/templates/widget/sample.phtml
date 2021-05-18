@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <?php
+ 
+    $url = "http://api.openweathermap.org/data/2.5/weather?q=HaNoi&appid=d3b83ec5eeb668e52d0d436a7b7f0d3d";
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $response = json_decode(curl_exec($ch), true);
+
+    $windspeed = $response['wind']['speed'];
+    $humidity = $response['main']['humidity'];
+    $city = $response['name']; 
+    $temp = $response['main']['temp'];
+    $m=$response['weather'];
+    $main=$m[0]['main'];
+
+    curl_close($ch);
+    ?> 
+  <div class="widget-container">
+    <div class="left">
+      <h1 class="city" id="city"><?php echo $city?>,Vietnam</h1>
+      <?php
+            if($main == "Rain") echo "<img class='weather-icon' src='img/ic weather 28.png'>";
+            else if ($main == "Clouds") echo "<img class='weather-icon' src='img/ic sky.png'>";
+            else echo "<img class='weather-icon' src='img/ic weather 1.png'>";
+      ?>
+      <h1 id="temp"><?php echo $temp - 273 ?></h1>
+      <h2 id="celsius">&degC</h2>
+    </div>
+
+    <div class="right">
+      <div class="icon">
+      <img class="wind-icon" src='img/ic wind.png'>
+        <br>
+        <br>
+      <img class="water-icon" src='img/ic water.png'>
+      </div>
+      <div class="values">
+        <p><?php echo $windspeed ?> m/s</p>
+        <br>
+        <br>
+        <p><?php echo $humidity ?> %</p>
+      </div>
+    </div>
+</div>
+  </body>
+    
+
+</html>

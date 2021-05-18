@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Commerce\News\Block\GetNews" id="commerce_news_sample">
+        <label>News Widget</label>
+        <description>Tin tức kinh doanh</description>
+    </widget>
+</widgets>

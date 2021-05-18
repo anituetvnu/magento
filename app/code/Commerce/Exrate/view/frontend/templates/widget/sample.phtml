@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ngoại tệ</th>
+                    <th>Mua tiền mặt</th>
+                    <th>Mua chuyển khoản</th>
+                    <th>Bán tiền mặt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $xml=simplexml_load_file("https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=68") or die("Error: Cannot create object");
+                foreach($xml->Exrate as $item)
+                {
+                    echo "<tr> <td>",$item['CurrencyCode'],"</td>",
+                    "<td>",$item['Buy'],"</td>",
+                    "<td>",$item['Transfer'],"</td>",
+                    "<td>",$item['Sell'],"</td> </tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </body>
+</html>
